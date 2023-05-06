@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 public enum CreditCardType: String {
     case amex = "^3[47][0-9]{5,}$"
@@ -27,6 +28,23 @@ public enum CreditCardType: String {
             return IndexSet(integersIn: 16...19)
         default:
             return IndexSet(integer: 16)
+        }
+    }
+    
+    public var icon: UIImage? {
+        switch self {
+        case .amex:
+            return UIImage(named: "amex", in: Bundle.module, compatibleWith: nil)
+        case .visa:
+            return UIImage(named: "visa", in: Bundle.module, compatibleWith: nil)
+        case .masterCard:
+            return UIImage(named: "masterCard", in: Bundle.module, compatibleWith: nil)
+        case .maestro:
+            return UIImage(named: "maestro", in: Bundle.module, compatibleWith: nil)
+        case .discover:
+            return UIImage(named: "discover", in: Bundle.module, compatibleWith: nil)
+        default:
+            return nil
         }
     }
 }

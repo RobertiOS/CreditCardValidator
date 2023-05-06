@@ -73,6 +73,21 @@ final class CreditCardValidatorTests: XCTestCase {
             XCTAssertFalse(CreditCardValidator(item.1).isValid(for: item.0))
         }
     }
+    
+    func testValidIconIsNotNil() {
+        let values: [(CreditCardType, String)] = [
+            (.amex, "3782 8224 6310 005"),
+            (.visa, "4111 1111 1111 1111"),
+            (.masterCard, "5500 0000 0000 0004"),
+            (.maestro, "6771 7980 2100 0008"),
+            (.discover, "6011 0000 0000 0004"),
+        ]
+        values.forEach { (item) in
+            let type = CreditCardValidator(item.1).type
+            XCTAssertEqual(item.0, type)
+            XCTAssertNotNil(type?.icon)
+        }
+    }
 
     static var allTests = [
         ("testValidData", testValidData),
